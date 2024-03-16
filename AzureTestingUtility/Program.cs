@@ -58,8 +58,14 @@ namespace AzureTestingUtility
             Console.WriteLine("Starting to Send Service Bus Payload...");
 
             // Initialize Client with Service Bus Connection String
+            string[] sbConnections = new string[2];
+
+            //dev
+            sbConnections[0] = @"Endpoint=sb://myservicebusforpoctesting.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=pp3dafmxizE+OKkjYAeg3VvSM7B0w3NSA+ASbB2jxFc=";
+            //test
+            sbConnections[1] = @"";
             IAzServiceBusTestClient sbTestClient = new AzServiceBusTestClient(
-                @"Endpoint=sb://myservicebusforpoctesting.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=pp3dafmxizE+OKkjYAeg3VvSM7B0w3NSA+ASbB2jxFc="
+                sbConnections
                 );
 
             // Fill payload
@@ -69,16 +75,17 @@ namespace AzureTestingUtility
             string topicName = "trendingtopic";
             
             // Add Application Properties
-            ApplicationProperties appProperties = new ApplicationProperties {
-                new KeyValuePair<string, string>("abc", "123"),
-                new KeyValuePair<string, string>("xyz", "456"),
+            AppProperties appProperties = new AppProperties {
+                new AppProperty("abc", "123"),
+                new AppProperty("xyz", "456"),
             };
 
             // Send
             await sbTestClient.SendMessageToServiceBusTopicWithApplicationProperties
                 (topicName,
                 payload,
-                appProperties);
+                appProperties,
+                SBEnvironments.Dev);
 
             Console.WriteLine("End.");
         }

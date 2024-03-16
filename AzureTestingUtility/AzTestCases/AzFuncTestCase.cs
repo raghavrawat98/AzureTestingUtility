@@ -21,20 +21,21 @@ namespace AzureTestingUtility.AzTestCases
 
         public async Task AzFunc_SetupAndRunTestAsync(
             string entityName, 
-            int payloadID)
+            int payloadID,
+            AzFuncEnvironments env)
         {
-            string apiUrl = GetApiUrl(entityName);
+            string apiUrl = GetApiUrl(entityName,env);
             string payload = _payloadFileHelper.LoadPayload(entityName,payloadID);
             await _azFuncTestClient.SendPostRequest
                 (apiUrl,
                 payload);
         }
 
-        private string GetApiUrl(string entityName) 
+        private string GetApiUrl(string entityName, AzFuncEnvironments env) 
         {
             return _azFunctionTestConfigs
                 .Where(x => x.EntityName.Equals(entityName))
-                .Select(x => x.ApiUrl)
+                .Select(x => x.ApiUrl[(int)env])
                 .FirstOrDefault();
         }
     }

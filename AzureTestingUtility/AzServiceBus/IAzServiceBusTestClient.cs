@@ -1,4 +1,5 @@
 ﻿using AzureTestingUtility.AzServiceBus.UtilityComponents;
+using AzureTestingUtility.TestConfigurations;
 
 namespace AzureTestingUtility.AzServiceBus
 {
@@ -7,6 +8,7 @@ namespace AzureTestingUtility.AzServiceBus
         public Task SendMessageToServiceBusTopicWithApplicationProperties(
             string topic,
             string payload,
-            ApplicationProperties applicationProperties);
+            AppProperties applicationProperties,
+            SBEnvironments env);
     }
 }
