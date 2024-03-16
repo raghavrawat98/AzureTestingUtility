@@ -18,13 +18,13 @@ namespace AzureTestingUtility.AzTestRunner
         {
             await _azFuncTestCase
                 .AzFunc_SetupAndRunTestAsync
-                ("ListenerL2Entity1Settings", 1
-                ,AzFuncEnvironments.Dev);
+                ("ListenerL2Entity1Settings", 1,
+                AzFuncEnvironments.Dev);
 
             await _azFuncTestCase
                 .AzFunc_SetupAndRunTestAsync
-                ("ListenerL2Entity2Settings", 2
-                , AzFuncEnvironments.Local);
+                ("ListenerL2Entity2Settings", 2, 
+                AzFuncEnvironments.Local);
 
             await _azServiceBusTestCase
                 .AzServiceBus_SetupAndRunTestAsync(
