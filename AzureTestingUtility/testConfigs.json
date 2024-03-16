@@ -1,0 +1,42 @@
+﻿{
+  "TestConfigs": {
+    "ServiceBusConnectionString": "Endpoint=sb://myservicebusforpoctesting.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=pp3dafmxizE+OKkjYAeg3VvSM7B0w3NSA+ASbB2jxFc=",
+    "TestPayloadsFolderPath": "E:\\MyDrive\\VS\\AzureTestingUtility\\AzureTestingUtility\\TestPayloads\\",
+    "AzFunctionTestConfig": [
+      {
+        "EntityName": "ListenerL2Entity1Settings",
+        "ApiUrl": "https://postreqfunctest.azurewebsites.net/api/Function1?",
+        "PayloadPaths": [
+          "Listener\\L2\\Entity1\\Payload1.json",
+          "Listener\\L2\\Entity1\\Payload2.json"
+        ]
+      },
+      {
+        "EntityName": "ListenerL2Entity2Settings",
+        "ApiUrl": "https://postreqfunctest.azurewebsites.net/api/Function1?",
+        "PayloadPaths": [
+          "Listener\\L2\\Entity2\\Payload1.json",
+          "Listener\\L2\\Entity2\\Payload2.json"
+        ]
+      }
+    ],
+    "AzServiceBusTestConfig": [
+      {
+        "EntityName": "SubscriberL3Entity1Settings",
+        "TopicName": "trendingtopic",
+        "PayloadPaths": [
+          "Subscriber\\L3\\Entity1\\Payload1.json",
+          "Subscriber\\L3\\Entity1\\Payload2.json"
+        ]
+      },
+      {
+        "EntityName": "SubscriberL3Entity2Settings",
+        "TopicName": "trendingtopic",
+        "PayloadPaths": [
+          "Subscriber\\L3\\Entity2\\Payload1.json",
+          "Subscriber\\L3\\Entity2\\Payload2.json"
+        ]
+      }
+    ]
+  }
+}
