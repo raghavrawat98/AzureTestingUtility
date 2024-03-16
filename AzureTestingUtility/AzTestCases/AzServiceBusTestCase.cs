@@ -2,6 +2,7 @@
 using AzureTestingUtility.AzServiceBus.UtilityComponents;
 using AzureTestingUtility.FileHelperService.PayloadFileHelper;
 using AzureTestingUtility.TestConfigurations;
+using AzureTestingUtility.TestConfigurations.Utils;
 
 namespace AzureTestingUtility.AzTestCases
 {

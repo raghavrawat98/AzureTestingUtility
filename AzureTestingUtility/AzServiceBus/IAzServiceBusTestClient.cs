@@ -1,5 +1,5 @@
 ﻿using AzureTestingUtility.AzServiceBus.UtilityComponents;
-using AzureTestingUtility.TestConfigurations;
+using AzureTestingUtility.TestConfigurations.Utils;
 
 namespace AzureTestingUtility.AzServiceBus
 {
