@@ -1,6 +1,7 @@
 ﻿using AzureTestingUtility.AzFunc;
 using AzureTestingUtility.FileHelperService.PayloadFileHelper;
 using AzureTestingUtility.TestConfigurations;
+using AzureTestingUtility.TestConfigurations.Utils;
 
 namespace AzureTestingUtility.AzTestCases
 {
@@ -26,6 +27,8 @@ namespace AzureTestingUtility.AzTestCases
         {
             string apiUrl = GetApiUrl(entityName,env);
             string payload = _payloadFileHelper.LoadPayload(entityName,payloadID);
+            entityName.PrintEntityName();
+            env.ToString().PrintEnv();
             await _azFuncTestClient.SendPostRequest
                 (apiUrl,
                 payload);

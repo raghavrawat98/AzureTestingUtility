@@ -1,6 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 using AzureTestingUtility.AzServiceBus.UtilityComponents;
-using AzureTestingUtility.TestConfigurations;
+using AzureTestingUtility.TestConfigurations.Utils;
 using System.Text;
 
 namespace AzureTestingUtility.AzServiceBus
@@ -32,10 +32,11 @@ namespace AzureTestingUtility.AzServiceBus
             SBEnvironments env) 
         {
             ServiceBusSender sender = _serviceBusClients[(int)env].CreateSender(topicName);
-            //_serviceBusClient.CreateSender(topicName);
-
             try
             {
+                topicName.PrintEntityName();
+                env.ToString().PrintEnv();
+
                 // Create a message
                 var message = new ServiceBusMessage(Encoding.UTF8.GetBytes(payload));
 
@@ -48,10 +49,13 @@ namespace AzureTestingUtility.AzServiceBus
                 // Send the message to the topic
                 await sender.SendMessageAsync(message);
 
-                Console.WriteLine($"Message sent: {payload}");
+                //Console.WriteLine($"Message sent: {payload}");
+                payload.PrintPayload();
+                "MessageSent".PrintSuccessResponse();
             }
             catch (Exception ex)
             {
+                ex.Message.PrintFailureResponse();
                 Console.WriteLine($"Exception: {ex.Message}");
             }
             finally

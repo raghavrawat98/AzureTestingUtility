@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AzureTestingUtility.TestConfigurations.Utils;
+using System.Text;
 
 namespace AzureTestingUtility.AzFunc
 {
@@ -10,6 +11,7 @@ namespace AzureTestingUtility.AzFunc
             {
                 try
                 {
+                    jsonPayload.PrintPayload();
                     // Convert the payload to a StringContent object
                     StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
@@ -20,11 +22,15 @@ namespace AzureTestingUtility.AzFunc
                     if (response.IsSuccessStatusCode)
                     {
                         string responseContent = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Request successful. Response: {responseContent}");
+                        //Console.WriteLine($"Request successful. Response: {responseContent}");
+                        responseContent.PrintSuccessResponse();
                     }
                     else
                     {
-                        Console.WriteLine($"Request failed. Status code: {response.StatusCode}");
+                        string responseContent = await response.Content.ReadAsStringAsync();
+                        $"Request failed.\n Response: {responseContent}\nStatus code: {response.StatusCode}"
+                            .PrintFailureResponse();
+                        //Console.WriteLine($"Request failed. Status code: {response.StatusCode}");
                     }
                 }
                 catch (Exception ex)
