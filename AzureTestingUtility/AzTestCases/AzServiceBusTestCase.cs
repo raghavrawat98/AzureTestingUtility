@@ -15,22 +15,25 @@ namespace AzureTestingUtility.AzTestCases
             TestConfigs testConfigs
             )
         {
+            _azServiceBusTestClient = new AzServiceBusTestClient(testConfigs.ServiceBusConnectionStrings);
             _payloadFileHelper = new PayloadFileHelper(testConfigs);
-            _azServiceBusTestClient = new AzServiceBusTestClient(testConfigs.ServiceBusConnectionString);
             _serviceBusTestConfig = testConfigs.AzServiceBusTestConfig;
         }
         public async Task AzServiceBus_SetupAndRunTestAsync
             (string entityName, 
             int payloadID, 
-            ApplicationProperties applicationProperties)
+            AppProperties applicationProperties,
+            SBEnvironments env)
         {
             string topicName = GetTopicName(entityName);
             string payload = _payloadFileHelper.LoadPayload(entityName, payloadID);
+            
             await _azServiceBusTestClient
                 .SendMessageToServiceBusTopicWithApplicationProperties
                 (topicName,
                 payload,
-                applicationProperties);
+                applicationProperties,
+                env);
         }
 
         private string GetTopicName(string entityName)
